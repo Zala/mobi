@@ -1,0 +1,1859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MOBIS_CONFIG_FILE>
+<categories>
+	<category id="">
+		<name></name>
+		<foursquareName>Arts and Entertainment</foursquareName>
+		<foursquareId>4d4b7104d754a06370d81259</foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+			<category id="">
+				<name></name>
+				<foursquareName>Aquarium</foursquareName>
+				<foursquareId>4fceea171983d5d06c3e9823</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Arcade</foursquareName>
+				<foursquareId>4bf58dd8d48988d1e1931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Art Gallery</foursquareName>
+				<foursquareId>4bf58dd8d48988d1e2931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Bowling Alley</foursquareName>
+				<foursquareId>4bf58dd8d48988d1e4931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Casino</foursquareName>
+				<foursquareId>4bf58dd8d48988d17c941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Comedy Club</foursquareName>
+				<foursquareId>4bf58dd8d48988d18e941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Concert Hall</foursquareName>
+				<foursquareId>5032792091d4c4b30a586d5c</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>General Entertainment</foursquareName>
+				<foursquareId>4bf58dd8d48988d1f1931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Historic Site</foursquareName>
+				<foursquareId>4deefb944765f83613cdba6e</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Movie Theater</foursquareName>
+				<foursquareId>4bf58dd8d48988d17f941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Indie Movie Theater</foursquareName>
+						<foursquareId>4bf58dd8d48988d17e941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Multiplex</foursquareName>
+						<foursquareId>4bf58dd8d48988d180941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Museum</foursquareName>
+				<foursquareId>4bf58dd8d48988d181941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Science Museum</foursquareName>
+						<foursquareId>4bf58dd8d48988d191941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Art Museum</foursquareName>
+						<foursquareId>4bf58dd8d48988d18f941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>History Museum</foursquareName>
+						<foursquareId>4bf58dd8d48988d190941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Planetarium</foursquareName>
+						<foursquareId>4bf58dd8d48988d192941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Music Venue</foursquareName>
+				<foursquareId>4bf58dd8d48988d1e5931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Jazz Club</foursquareName>
+						<foursquareId>4bf58dd8d48988d1e7931735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Piano Bar</foursquareName>
+						<foursquareId>4bf58dd8d48988d1e8931735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Rock Club</foursquareName>
+						<foursquareId>4bf58dd8d48988d1e9931735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Performing Arts Venue</foursquareName>
+				<foursquareId>4bf58dd8d48988d1f2931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Dance Studio</foursquareName>
+						<foursquareId>4bf58dd8d48988d134941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Indie Theater</foursquareName>
+						<foursquareId>4bf58dd8d48988d135941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Opera House</foursquareName>
+						<foursquareId>4bf58dd8d48988d136941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Theater</foursquareName>
+						<foursquareId>4bf58dd8d48988d137941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Pool Hall</foursquareName>
+				<foursquareId>4bf58dd8d48988d1e3931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Public Art</foursquareName>
+				<foursquareId>507c8c4091d498d9fc8c67a9</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Racetrack</foursquareName>
+				<foursquareId>4bf58dd8d48988d1f4931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Stadium</foursquareName>
+				<foursquareId>4bf58dd8d48988d184941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Baseball Stadium</foursquareName>
+						<foursquareId>4bf58dd8d48988d18c941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Basketball Stadium</foursquareName>
+						<foursquareId>4bf58dd8d48988d18b941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Cricket Ground</foursquareName>
+						<foursquareId>4bf58dd8d48988d18a941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Football Stadium</foursquareName>
+						<foursquareId>4bf58dd8d48988d189941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Hockey Arena</foursquareName>
+						<foursquareId>4bf58dd8d48988d185941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Soccer Stadium</foursquareName>
+						<foursquareId>4bf58dd8d48988d188941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Tennis</foursquareName>
+						<foursquareId>4e39a891bd410d7aed40cbc2</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Track Stadium</foursquareName>
+						<foursquareId>4bf58dd8d48988d187941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Theme Park</foursquareName>
+				<foursquareId>4bf58dd8d48988d182941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Theme Park Ride / Attraction</foursquareName>
+						<foursquareId>5109983191d435c0d71c2bb1</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Water Park</foursquareName>
+				<foursquareId>4bf58dd8d48988d193941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Zoo</foursquareName>
+				<foursquareId>4bf58dd8d48988d17b941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName>College and University</foursquareName>
+		<foursquareId>4d4b7105d754a06372d81259</foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+			<category id="">
+				<name></name>
+				<foursquareName>College Academic Building</foursquareName>
+				<foursquareId>4bf58dd8d48988d198941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>College Arts Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d199941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Communications Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d19a941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Engineering Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d19e941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College History Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d19d941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Math Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d19c941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Science Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d19b941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Technology Building</foursquareName>
+						<foursquareId>4bf58dd8d48988d19f941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Administrative Building</foursquareName>
+				<foursquareId>4bf58dd8d48988d197941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Auditorium</foursquareName>
+				<foursquareId>4bf58dd8d48988d1af941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Bookstore</foursquareName>
+				<foursquareId>4bf58dd8d48988d1b1941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Cafeteria</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a1941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Classroom</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a0941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Gym</foursquareName>
+				<foursquareId>4bf58dd8d48988d1b2941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Lab</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a5941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Library</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a7941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Quad</foursquareName>
+				<foursquareId>4bf58dd8d48988d1aa941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Rec Center</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a9941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Residence Hall</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a3941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Stadium</foursquareName>
+				<foursquareId>4bf58dd8d48988d1b4941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>College Baseball Diamond</foursquareName>
+						<foursquareId>4bf58dd8d48988d1bb941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Basketball Court</foursquareName>
+						<foursquareId>4bf58dd8d48988d1ba941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Cricket Pitch</foursquareName>
+						<foursquareId>4bf58dd8d48988d1b9941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Football Field</foursquareName>
+						<foursquareId>4bf58dd8d48988d1b8941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Hockey Rink</foursquareName>
+						<foursquareId>4bf58dd8d48988d1b5941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Soccer Field</foursquareName>
+						<foursquareId>4bf58dd8d48988d1b7941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Tennis Court</foursquareName>
+						<foursquareId>4e39a9cebd410d7aed40cbc4</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>College Track</foursquareName>
+						<foursquareId>4bf58dd8d48988d1b6941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>College Theater</foursquareName>
+				<foursquareId>4bf58dd8d48988d1ac941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Community College</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a2941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Fraternity House</foursquareName>
+				<foursquareId>4bf58dd8d48988d1b0941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>General College and University</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a8941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Law School</foursquareName>
+				<foursquareId>4bf58dd8d48988d1a6941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Medical School</foursquareName>
+				<foursquareId>4bf58dd8d48988d1b3941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Sorority House</foursquareName>
+				<foursquareId>4bf58dd8d48988d141941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Student Center</foursquareName>
+				<foursquareId>4bf58dd8d48988d1ab941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Trade School</foursquareName>
+				<foursquareId>4bf58dd8d48988d1ad941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>University</foursquareName>
+				<foursquareId>4bf58dd8d48988d1ae941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName>Event</foursquareName>
+		<foursquareId>4d4b7105d754a06373d81259</foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+			<category id="">
+				<name></name>
+				<foursquareName>Conference</foursquareName>
+				<foursquareId>5267e4d9e4b0ec79466e48c6</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Convention</foursquareName>
+				<foursquareId>5267e4d9e4b0ec79466e48c9</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Festival</foursquareName>
+				<foursquareId>5267e4d9e4b0ec79466e48c7</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Music Festival</foursquareName>
+				<foursquareId>5267e4d9e4b0ec79466e48d1</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Other Event</foursquareName>
+				<foursquareId>5267e4d9e4b0ec79466e48c8</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Parade</foursquareName>
+				<foursquareId>52741d85e4b0d5d1e3c6a6d9</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Street Fair</foursquareName>
+				<foursquareId>5267e4d8e4b0ec79466e48c5</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName>Food</foursquareName>
+		<foursquareId>4d4b7105d754a06374d81259</foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+			<category id="">
+				<name></name>
+				<foursquareName>Restaurant</foursquareName>
+				<foursquareId>4bf58dd8d48988d1c4941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+					<category id="">
+						<name></name>
+						<foursquareName>Afghan Restaurant</foursquareName>
+						<foursquareId>503288ae91d4c4b30a586d67</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>African Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d1c8941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>American Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d14e941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Arepa Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d152941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Argentinian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d107941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Asian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d142941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Australian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d169941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Brazilian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d16b941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+							<category id="">
+								<name></name>
+								<foursquareName>Acai House</foursquareName>
+								<foursquareId>5294c7523cf9994f4e043a62</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Baiano Restaurant</foursquareName>
+								<foursquareId>52939ae13cf9994f4e043a3b</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Central Brazilian Restaurant</foursquareName>
+								<foursquareId>52939a9e3cf9994f4e043a36</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Churrascaria</foursquareName>
+								<foursquareId>52939a643cf9994f4e043a33</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Empada House</foursquareName>
+								<foursquareId>5294c55c3cf9994f4e043a61</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Goiano Restaurant</foursquareName>
+								<foursquareId>52939af83cf9994f4e043a3d</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Mineiro Restaurant</foursquareName>
+								<foursquareId>52939aed3cf9994f4e043a3c</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Northeastern Brazilian Restaurant</foursquareName>
+								<foursquareId>52939aae3cf9994f4e043a37</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Northern Brazilian Restaurant</foursquareName>
+								<foursquareId>52939ab93cf9994f4e043a38</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Pastelaria</foursquareName>
+								<foursquareId>5294cbda3cf9994f4e043a63</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Southeastern Brazilian Restaurant</foursquareName>
+								<foursquareId>52939ac53cf9994f4e043a39</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Southern Brazilian Restaurant</foursquareName>
+								<foursquareId>52939ad03cf9994f4e043a3a</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Tapiocaria</foursquareName>
+								<foursquareId>52939a7d3cf9994f4e043a34</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Cajun / Creole Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d17a941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Caribbean Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d144941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Caucasian Restaurant</foursquareName>
+						<foursquareId>5293a7d53cf9994f4e043a45</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Chinese Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d145941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+							<category id="">
+								<name></name>
+								<foursquareName>Anhui Restaurant</foursquareName>
+								<foursquareId>52af3a5e3cf9994f4e043bea</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Beijing Restaurant</foursquareName>
+								<foursquareId>52af3a723cf9994f4e043bec</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Cantonese Restaurant</foursquareName>
+								<foursquareId>52af3a7c3cf9994f4e043bed</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Chinese Aristocrat Restaurant</foursquareName>
+								<foursquareId>52af3a673cf9994f4e043beb</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Chinese Breakfast Place</foursquareName>
+								<foursquareId>52af3a903cf9994f4e043bee</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Dongbei Restaurant</foursquareName>
+								<foursquareId>52af3a9f3cf9994f4e043bef</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Fujian Restaurant</foursquareName>
+								<foursquareId>52af3aaa3cf9994f4e043bf0</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Guizhou Restaurant</foursquareName>
+								<foursquareId>52af3ab53cf9994f4e043bf1</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Hainan Restaurant</foursquareName>
+								<foursquareId>52af3abe3cf9994f4e043bf2</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Hakka Restaurant</foursquareName>
+								<foursquareId>52af3ac83cf9994f4e043bf3</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Henan Restaurant</foursquareName>
+								<foursquareId>52af3ad23cf9994f4e043bf4</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Hong Kong Restaurant</foursquareName>
+								<foursquareId>52af3add3cf9994f4e043bf5</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Huaiyang Restaurant</foursquareName>
+								<foursquareId>52af3af23cf9994f4e043bf7</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Hubei Restaurant</foursquareName>
+								<foursquareId>52af3ae63cf9994f4e043bf6</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Hunan Restaurant</foursquareName>
+								<foursquareId>52af3afc3cf9994f4e043bf8</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Imperial Restaurant</foursquareName>
+								<foursquareId>52af3b053cf9994f4e043bf9</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Jiangsu Restaurant</foursquareName>
+								<foursquareId>52af3b213cf9994f4e043bfa</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Jiangxi Restaurant</foursquareName>
+								<foursquareId>52af3b293cf9994f4e043bfb</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Macanese Restaurant</foursquareName>
+								<foursquareId>52af3b343cf9994f4e043bfc</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Manchu Restaurant</foursquareName>
+								<foursquareId>52af3b3b3cf9994f4e043bfd</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Peking Duck Restaurant</foursquareName>
+								<foursquareId>52af3b463cf9994f4e043bfe</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Shaanxi Restaurant</foursquareName>
+								<foursquareId>52af3b633cf9994f4e043c01</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Shandong Restaurant</foursquareName>
+								<foursquareId>52af3b513cf9994f4e043bff</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Shanghai Restaurant</foursquareName>
+								<foursquareId>52af3b593cf9994f4e043c00</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Shanxi Restaurant</foursquareName>
+								<foursquareId>52af3b6e3cf9994f4e043c02</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Szechuan Restaurant</foursquareName>
+								<foursquareId>52af3b773cf9994f4e043c03</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Taiwanese Restaurant</foursquareName>
+								<foursquareId>52af3b813cf9994f4e043c04</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Tianjin Restaurant</foursquareName>
+								<foursquareId>52af3b893cf9994f4e043c05</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Xinjiang Restaurant</foursquareName>
+								<foursquareId>52af3b913cf9994f4e043c06</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Yunnan Restaurant</foursquareName>
+								<foursquareId>52af3b9a3cf9994f4e043c07</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Zhejiang Restaurant</foursquareName>
+								<foursquareId>52af3ba23cf9994f4e043c08</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Cuban Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d154941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Dim Sum Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d1f5931735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Dumpling Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d108941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Eastern European Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d109941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Ethiopian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d10a941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Falafel Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d10b941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Fast Food Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d16e941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Filipino Restaurant</foursquareName>
+						<foursquareId>4eb1bd1c3b7b55596b4a748f</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>French Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d10c941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>German Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d10d941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Gluten-free Restaurant</foursquareName>
+						<foursquareId>4c2cd86ed066bed06c3c5209</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Greek Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d10e941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Hotpot Restaurant</foursquareName>
+						<foursquareId>52af0bd33cf9994f4e043bdd</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Indian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d10f941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Indonesian Restaurant</foursquareName>
+						<foursquareId>4deefc054765f83613cdba6f</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+							<category id="">
+								<name></name>
+								<foursquareName>Acehnese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043ac9</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Balinese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043acb</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Betawinese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043aca</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Javanese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043ac7</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Manadonese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043ac8</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Meatball Place</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043acc</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Padangnese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043ac5</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+							<category id="">
+								<name></name>
+								<foursquareName>Sundanese Restaurant</foursquareName>
+								<foursquareId>52960eda3cf9994f4e043ac6</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Italian Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d110941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Japanese Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d111941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Korean Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d113941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName>Latin American Restaurant</foursquareName>
+						<foursquareId>4bf58dd8d48988d1be941735</foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+							<category id="">
+								<name></name>
+								<foursquareName>Empanada Restaurant</foursquareName>
+								<foursquareId>52939a8c3cf9994f4e043a35</foursquareId>
+								<factualName></factualName>
+								<factualIds></factualIds>
+							</category>
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+					<category id="">
+						<name></name>
+						<foursquareName></foursquareName>
+						<foursquareId></foursquareId>
+						<factualName></factualName>
+						<factualIds></factualIds>
+						<childrenCategories>
+						
+						</childrenCategories>
+					</category>
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>BBQ Joint</foursquareName>
+				<foursquareId>4bf58dd8d48988d1df931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Bagel Shop</foursquareName>
+				<foursquareId>4bf58dd8d48988d179941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Bakery</foursquareName>
+				<foursquareId>4bf58dd8d48988d16a941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Breakfast Spot</foursquareName>
+				<foursquareId>4bf58dd8d48988d143941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Burger Joint</foursquareName>
+				<foursquareId>4bf58dd8d48988d16c941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Burrito Place</foursquareName>
+				<foursquareId>4bf58dd8d48988d153941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Cafeteria</foursquareName>
+				<foursquareId>4bf58dd8d48988d128941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Café</foursquareName>
+				<foursquareId>4bf58dd8d48988d16d941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Coffee Shop</foursquareName>
+				<foursquareId>4bf58dd8d48988d1e0931735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Cupcake Shop</foursquareName>
+				<foursquareId>4bf58dd8d48988d1bc941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Deli / Bodega</foursquareName>
+				<foursquareId>4bf58dd8d48988d146941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Dessert Shop</foursquareName>
+				<foursquareId>4bf58dd8d48988d1d0941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Diner</foursquareName>
+				<foursquareId>4bf58dd8d48988d147941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Distillery</foursquareName>
+				<foursquareId>4e0e22f5a56208c4ea9a85a0</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Donut Shop</foursquareName>
+				<foursquareId>4bf58dd8d48988d148941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Fish and Chips Shop</foursquareName>
+				<foursquareId>4edd64a0c7ddd24ca188df1a</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Food Truck</foursquareName>
+				<foursquareId>4bf58dd8d48988d1cb941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Fried Chicken Joint</foursquareName>
+				<foursquareId>4d4ae6fc7a7b7dea34424761</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Gastropub</foursquareName>
+				<foursquareId>4bf58dd8d48988d155941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Hot Dog Joint</foursquareName>
+				<foursquareId>4bf58dd8d48988d16f941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Ice Cream Shop</foursquareName>
+				<foursquareId>4bf58dd8d48988d1c9941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName>Juice Bar</foursquareName>
+				<foursquareId>4bf58dd8d48988d112941735</foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+			<category id="">
+				<name></name>
+				<foursquareName></foursquareName>
+				<foursquareId></foursquareId>
+				<factualName></factualName>
+				<factualIds></factualIds>
+				<childrenCategories>
+				
+				</childrenCategories>
+			</category>
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName></foursquareName>
+		<foursquareId></foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+		
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName></foursquareName>
+		<foursquareId></foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+		
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName></foursquareName>
+		<foursquareId></foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+		
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName></foursquareName>
+		<foursquareId></foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+		
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName></foursquareName>
+		<foursquareId></foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+		
+		</childrenCategories>
+	</category>
+	
+	<category id="">
+		<name></name>
+		<foursquareName></foursquareName>
+		<foursquareId></foursquareId>
+		<factualName></factualName>
+		<factualIds></factualIds>
+		<childrenCategories>
+		
+		</childrenCategories>
+	</category>
+</categories>

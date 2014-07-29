@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MOBIS_CONFIG_FILE>
+<dbconfig>
+	<host>localhost</host>
+	<port>3306</port>
+	<user>root</user>
+	<pwd>grisgris123</pwd>
+	<driver>com.mysql.jdbc.Driver</driver>
+</dbconfig>
