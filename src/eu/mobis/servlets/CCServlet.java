@@ -32,11 +32,15 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 
 
 
+
+
 import cc.component.ConversationalComponent;
 import cc.component.UmkoConversationalComponent;
 import cc.component.exceptions.ReasoningEngineAccessException;
 import cc.component.types.CCUser;
+import cc.component.types.Concept;
 import cc.component.types.Discourse;
+import cc.component.types.Feedback;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -132,7 +136,13 @@ public class CCServlet extends HttpServlet {
 				resp = r;
 				break;
 			case ANSWER:
-				
+				responseType = new TypeToken<MobisResponse<Discourse>>(){
+				}.getType();
+				Feedback feedback = new Feedback(user.getUserConcept(), new Concept("TripAssistanceDeviceQuestion"), "GoogleMaps"); //TODO
+				MobisResponse<Discourse> f = new MobisResponse<Discourse>();
+				f.setResponseObject(handleAnswer(user, feedback));
+				resp = f;
+				break;
 			}
 
 			out.println(gson.toJson(resp, responseType));
@@ -210,6 +220,16 @@ public class CCServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
+		return test;
+	}
+	
+	private Discourse handleAnswer(CCUser user, Feedback feedback) throws ReasoningEngineAccessException {
+		String file = user.getUserConcept().toString()+"Ontology.k";
+		InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
+		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, feedback);
+		
+		Discourse test = testF.getDiscourseForConcept(user.getUserConcept());
+		
 		return test;
 	}
 }// CCServlet
