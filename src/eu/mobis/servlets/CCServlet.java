@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -30,12 +31,9 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 //import cc.component.types.Discourse;
 
 
-
-
-
-
 import cc.component.ConversationalComponent;
 import cc.component.UmkoConversationalComponent;
+import cc.component.UmkoConversationalComponent.ConversationMethod;
 import cc.component.exceptions.ReasoningEngineAccessException;
 import cc.component.types.CCUser;
 import cc.component.types.Concept;
@@ -60,7 +58,7 @@ public class CCServlet extends HttpServlet {
 	Gson gson = new Gson();
 
 	public enum CCMethod {
-		PROFILE("PROFILE"), ANSWER ("ANSWER");
+		PROFILE("PROFILE"), ANSWER ("ANSWER"), EDIT("EDIT");
 
 		private static HashMap<String, CCMethod> methods = new HashMap<>();
 		private String name;
@@ -140,8 +138,16 @@ public class CCServlet extends HttpServlet {
 				}.getType();
 				Feedback feedback = new Feedback(user.getUserConcept(), new Concept("TripAssistanceDeviceQuestion"), "GoogleMaps"); //TODO
 				MobisResponse<Discourse> f = new MobisResponse<Discourse>();
-				f.setResponseObject(handleAnswer(user, feedback));
+				f.setResponseObject(handleAnswer(user, feedback, ConversationMethod.ANSWER));
 				resp = f;
+				break;
+			case EDIT:
+				responseType = new TypeToken<MobisResponse<Discourse>>(){
+				}.getType();
+				Feedback edit = new Feedback(user.getUserConcept(), new Concept("TripAssistanceDeviceQuestion"), "TripPlanner"); //TODO
+				MobisResponse<Discourse> e = new MobisResponse<Discourse>();
+				e.setResponseObject(handleAnswer(user, edit, ConversationMethod.EDIT));
+				resp = e;
 				break;
 			}
 
@@ -164,6 +170,7 @@ public class CCServlet extends HttpServlet {
 			out.println(gson.toJson(resp, responseType));
 		}
 	}
+
 
 	private CCUser loadUser(HttpServletRequest request, Connection con) throws MobisServletException {
 		String token = request.getParameter("token");
@@ -223,13 +230,14 @@ public class CCServlet extends HttpServlet {
 		return test;
 	}
 	
-	private Discourse handleAnswer(CCUser user, Feedback feedback) throws ReasoningEngineAccessException {
+	private Discourse handleAnswer(CCUser user, Feedback feedback, ConversationMethod method) throws ReasoningEngineAccessException {
 		String file = user.getUserConcept().toString()+"Ontology.k";
 		InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
-		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, feedback);
+		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, feedback, method);
 		
 		Discourse test = testF.getDiscourseForConcept(user.getUserConcept());
-		
 		return test;
 	}
+	
+	
 }// CCServlet
