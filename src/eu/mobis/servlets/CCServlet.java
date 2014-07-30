@@ -265,6 +265,14 @@ public class CCServlet extends HttpServlet {
 		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, feedback, method);
 		
 		Discourse test = testF.getDiscourseForConcept(user.getUserConcept());
+		try {
+			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k", true)));
+			writer.print(test.getNewKnowledge());
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 		return test;
 	}
 	
