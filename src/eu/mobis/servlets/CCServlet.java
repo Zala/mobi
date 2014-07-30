@@ -9,7 +9,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -31,6 +34,11 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 //import cc.component.types.Discourse;
 
 
+
+
+
+
+
 import cc.component.ConversationalComponent;
 import cc.component.UmkoConversationalComponent;
 import cc.component.UmkoConversationalComponent.ConversationMethod;
@@ -40,6 +48,7 @@ import cc.component.types.Concept;
 import cc.component.types.Discourse;
 import cc.component.types.Feedback;
 
+import com.google.api.client.http.HttpRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -112,6 +121,11 @@ public class CCServlet extends HttpServlet {
 		processRequest(request, response);
 	}
 
+	/**
+	 * A method that finds the user in Mobis database, identifies CCMethod and creates a GSON response corresponding to each method
+	 * @param request
+	 * @param response
+	 */
 	public void processRequest(HttpServletRequest request, HttpServletResponse response) {
 		Connection con = dbUtils.startConnection("/MobisPGSQLConfig.xml", StringConstants.MOBIS_MAIN,
 				StringConstants.JDBC_POSTGRES);
@@ -136,7 +150,8 @@ public class CCServlet extends HttpServlet {
 			case ANSWER:
 				responseType = new TypeToken<MobisResponse<Discourse>>(){
 				}.getType();
-				Feedback feedback = new Feedback(user.getUserConcept(), new Concept("TripAssistanceDeviceQuestion"), "GoogleMaps"); //TODO
+				Feedback feedback = createFeedback(user, request);
+//				Feedback feedback = new Feedback(user.getUserConcept(), new Concept("TripAssistanceDeviceQuestion"), "GoogleMaps"); //TODO
 				MobisResponse<Discourse> f = new MobisResponse<Discourse>();
 				f.setResponseObject(handleAnswer(user, feedback, ConversationMethod.ANSWER));
 				resp = f;
@@ -209,6 +224,12 @@ public class CCServlet extends HttpServlet {
 		return ccmethod;
 	}
 
+	/**
+	 * A method that initializes Umko in case method=PROFILE and returns initial Discourse 
+	 * @param user
+	 * @return
+	 * @throws ReasoningEngineAccessException
+	 */
 	private Discourse handleProfileMethod(CCUser user) throws ReasoningEngineAccessException {
 		String file = user.getUserConcept().toString()+"Ontology.k";
 		InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
@@ -230,6 +251,14 @@ public class CCServlet extends HttpServlet {
 		return test;
 	}
 	
+	/**
+	 * A method that asserts user's answer to Umko and returns new Discourse object
+	 * @param user
+	 * @param feedback
+	 * @param method
+	 * @return
+	 * @throws ReasoningEngineAccessException
+	 */
 	private Discourse handleAnswer(CCUser user, Feedback feedback, ConversationMethod method) throws ReasoningEngineAccessException {
 		String file = user.getUserConcept().toString()+"Ontology.k";
 		InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
@@ -237,6 +266,28 @@ public class CCServlet extends HttpServlet {
 		
 		Discourse test = testF.getDiscourseForConcept(user.getUserConcept());
 		return test;
+	}
+	
+	/**
+	 * A methods that creater a feedback object from http request parameters
+	 * @param user
+	 * @param _sentenceId
+	 * @param _answer
+	 * @return
+	 */
+	private Feedback createFeedback(CCUser user, HttpServletRequest request) {
+		ArrayList<String> list = new ArrayList<String>();
+	    list.addAll(Arrays.asList((request.getParameterValues("answer"))));
+	    String answer = list.get(0);
+	    
+	    list = new ArrayList<String>();
+	    list.addAll(Arrays.asList(request.getParameterValues("sentenceId")));
+	    String sententeId = list.get(0);
+	    
+//	    String[] token = request.getParameterValues("token"); 
+	    
+		Feedback feedback = new Feedback(user.getUserConcept(), new Concept(sententeId), answer);
+		return feedback;
 	}
 	
 	
