@@ -8,6 +8,9 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Type;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,6 +36,9 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 //import cc.component.exceptions.ReasoningEngineAccessException;
 //import cc.component.types.CCUser;
 //import cc.component.types.Discourse;
+
+
+
 
 
 
@@ -233,6 +239,7 @@ public class CCServlet extends HttpServlet {
 	 * @param user
 	 * @return
 	 * @throws ReasoningEngineAccessException
+	 * @throws URISyntaxException 
 	 */
 	private Discourse handleProfileMethod(CCUser user) throws ReasoningEngineAccessException {
 		String file = user.getUserConcept().toString()+"Ontology.k";
@@ -245,13 +252,31 @@ public class CCServlet extends HttpServlet {
 
 		Discourse test = testC.getDiscourseForConcept(user.getUserConcept());
 		try {
-			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k", true)));
+			URL resource = CCServlet.class.getClassLoader().getResource(user.getUserConcept().toString() + "Ontology.k");
+			String res= Paths.get(resource.toURI()).toFile().toString();
+			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res+user.getUserConcept().toString() + "Ontology.k", true)));
+//			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k", true))); 
 			writer.print(test.getNewKnowledge());
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+			LOGGER.severe("Could not write to personal ontology file.");
+		} catch (URISyntaxException e) {
+			LOGGER.severe("Could not get URL to ontology file");
+		} catch	(NullPointerException e) {
+			try {
+				URL resource = CCServlet.class.getClassLoader().getResource("/");
+				String res;
+				res = Paths.get(resource.toURI()).toFile().toString();
+				PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res+user.getUserConcept().toString() + "Ontology.k", true))); //TODO not working as it should
+				writer.print(test.getNewKnowledge());
+				writer.close();
+			} catch (URISyntaxException e1) {
+				LOGGER.severe("Could not get URL to ontology folder");
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				LOGGER.severe("Could not write to personal ontology file.");
+			}
+		}	
 		return test;
 	}
 	
@@ -274,8 +299,7 @@ public class CCServlet extends HttpServlet {
 			writer.print(test.getNewKnowledge());
 			writer.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			LOGGER.severe("Could not write to personal ontology file.");
 		}	
 		return test;
 	}
@@ -285,7 +309,7 @@ public class CCServlet extends HttpServlet {
 			File file = new File("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k");
 			boolean success = file.delete();
 			if (!success) {
-				LOGGER.severe("Could not delete personal ontology file");
+				LOGGER.severe("Could not delete personal ontology file.");
 			}
 		} catch (Exception e) {
 			LOGGER.severe("Did not delete personal ontology file.");
