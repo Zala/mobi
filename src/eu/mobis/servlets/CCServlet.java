@@ -1,12 +1,13 @@
 package eu.mobis.servlets;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import javax.servlet.ServletException;
@@ -41,12 +41,6 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 
 
 
-
-
-
-
-
-
 import cc.component.ConversationalComponent;
 import cc.component.UmkoConversationalComponent;
 import cc.component.UmkoConversationalComponent.ConversationMethod;
@@ -54,9 +48,9 @@ import cc.component.exceptions.ReasoningEngineAccessException;
 import cc.component.types.CCUser;
 import cc.component.types.Concept;
 import cc.component.types.Discourse;
-import cc.component.types.Feedback;
+import cc.component.types.Info;
+import cc.component.types.InfoPacket;
 
-import com.google.api.client.http.HttpRequest;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -75,7 +69,7 @@ public class CCServlet extends HttpServlet {
 	Gson gson = new Gson();
 
 	public enum CCMethod {
-		PROFILE("PROFILE"), ANSWER ("ANSWER"), EDIT("EDIT"), DELETE("DELETE");
+		PROFILE("PROFILE"), ANSWER ("ANSWER"), EDIT("EDIT"), DELETE("DELETE"), CALENDAR("CALENDAR"), CHECK_STREAM("CHECK_STREAM"), USER_DATA("USER_DATA");
 
 		private static HashMap<String, CCMethod> methods = new HashMap<>();
 		private String name;
@@ -158,21 +152,53 @@ public class CCServlet extends HttpServlet {
 			case ANSWER:
 				responseType = new TypeToken<MobisResponse<Discourse>>(){
 				}.getType();
-				Feedback feedback = createFeedback(user, request);
+//				InfoPacket answer = createInfoPacket(user, request, ConversationMethod.ANSWER);
+				ArrayList<Info> l = new ArrayList<>();
+				Info info1 = new Info(new Concept("EnginePowerQuestion"), "2000");
+//				Info info2 = new Info(new Concept("TripAssistanceDeviceQuestion"), "GPSDevice");
+				l.add(info1);
+//				l.add(info2);
+				InfoPacket answer = new InfoPacket(user.getUserConcept(), l);
 				MobisResponse<Discourse> f = new MobisResponse<Discourse>();
-				f.setResponseObject(handleAnswerMethod(user, feedback, ConversationMethod.ANSWER));
+				f.setResponseObject(handleAnswerMethod(user, answer, ConversationMethod.ANSWER));
 				resp = f;
 				break;
 			case EDIT:
 				responseType = new TypeToken<MobisResponse<Discourse>>(){
 				}.getType();
-				Feedback edit = createFeedback(user, request);
+				InfoPacket edit = createInfoPacket(user, request, ConversationMethod.EDIT);
 				MobisResponse<Discourse> e = new MobisResponse<Discourse>();
 				e.setResponseObject(handleAnswerMethod(user, edit, ConversationMethod.EDIT));
 				resp = e;
 				break;
 			case DELETE:
-				handleDeleteMethod(user);
+				responseType = new TypeToken<MobisResponse<String>>(){}.getType();
+				MobisResponse<String> delete = new MobisResponse<String>();
+				delete.setResponseObject(handleDeleteMethod(user));
+				resp = delete;
+				break;
+			case CALENDAR:
+				responseType = new TypeToken<MobisResponse<Discourse>>(){
+				}.getType();
+				Info info = new Info(new Concept("CalendarEventLocationQuestion"), "JSI");
+				ArrayList<Info> list = new ArrayList<Info>();
+				list.add(info);
+				InfoPacket packet = new InfoPacket(user.getUserConcept(), list, "department meeting");
+				MobisResponse<Discourse> c = new MobisResponse<Discourse>();
+				c.setResponseObject(handleCalendarMethod(user, packet, ConversationMethod.CALENDAR));
+				resp = c;
+				break;
+			case CHECK_STREAM:
+				responseType = new TypeToken<MobisResponse<String>>(){}.getType();
+				MobisResponse<String> check = new MobisResponse<String>();
+				check.setResponseObject(handleCheckStreamMethod(user));
+				resp = check;
+				break;
+			case USER_DATA:
+				responseType = new TypeToken<MobisResponse<String>>(){}.getType();
+				MobisResponse<String> data = new MobisResponse<String>();
+				data.setResponseObject(handleUserDataMethod(user));
+				resp = data;
 				break;
 			}
 
@@ -242,41 +268,18 @@ public class CCServlet extends HttpServlet {
 	 * @throws URISyntaxException 
 	 */
 	private Discourse handleProfileMethod(CCUser user) throws ReasoningEngineAccessException {
-		String file = user.getUserConcept().toString()+"Ontology.k";
-		InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
+
+		String file = "ontologies/"+user.getUserConcept().toString()+"Ontology.k";
+		InputStream stream = CCServlet.class.getClassLoader().getResourceAsStream(file);
 		
-		ConversationalComponent testC = new UmkoConversationalComponent(user, stream);
+		ConversationalComponent testC = new UmkoConversationalComponent(user, stream, null, ConversationMethod.PROFILE);
 //		if (testC.initializeForUser(user) == false) {
 //			testC.createNewUser(user);
 //		}
 
 		Discourse test = testC.getDiscourseForConcept(user.getUserConcept());
-		try {
-			URL resource = CCServlet.class.getClassLoader().getResource(user.getUserConcept().toString() + "Ontology.k");
-			String res= Paths.get(resource.toURI()).toFile().toString();
-			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res+user.getUserConcept().toString() + "Ontology.k", true)));
-//			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k", true))); 
-			writer.print(test.getNewKnowledge());
-			writer.close();
-		} catch (IOException e) {
-			LOGGER.severe("Could not write to personal ontology file.");
-		} catch (URISyntaxException e) {
-			LOGGER.severe("Could not get URL to ontology file");
-		} catch	(NullPointerException e) {
-			try {
-				URL resource = CCServlet.class.getClassLoader().getResource("/");
-				String res;
-				res = Paths.get(resource.toURI()).toFile().toString();
-				PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res+user.getUserConcept().toString() + "Ontology.k", true))); //TODO not working as it should
-				writer.print(test.getNewKnowledge());
-				writer.close();
-			} catch (URISyntaxException e1) {
-				LOGGER.severe("Could not get URL to ontology folder");
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				LOGGER.severe("Could not write to personal ontology file.");
-			}
-		}	
+		writeToPersonalOnt(user, test.getNewKnowledge());
+		
 		return test;
 	}
 	
@@ -288,57 +291,230 @@ public class CCServlet extends HttpServlet {
 	 * @return
 	 * @throws ReasoningEngineAccessException
 	 */
-	private Discourse handleAnswerMethod(CCUser user, Feedback feedback, ConversationMethod method) throws ReasoningEngineAccessException {
-		String file = user.getUserConcept().toString()+"Ontology.k";
-		InputStream stream = getClass().getClassLoader().getResourceAsStream(file);
-		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, feedback, method);
+	private Discourse handleAnswerMethod(CCUser user, InfoPacket info, ConversationMethod method) throws ReasoningEngineAccessException {
+		String file = "ontologies/"+user.getUserConcept().toString()+"Ontology.k";
+		InputStream stream = CCServlet.class.getClassLoader().getResourceAsStream(file);
+		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, info, method);
 		
 		Discourse test = testF.getDiscourseForConcept(user.getUserConcept());
-		try {
-			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k", true)));
-			writer.print(test.getNewKnowledge());
-			writer.close();
-		} catch (IOException e) {
-			LOGGER.severe("Could not write to personal ontology file.");
-		}	
+		writeToPersonalOnt(user, test.getNewKnowledge());
 		return test;
 	}
 	
-	private void handleDeleteMethod(CCUser user) {
+	/**
+	 * A method that deletes user's personal ontology file.
+	 * @param user
+	 */
+	private String handleDeleteMethod(CCUser user) {
 		try {
-			File file = new File("C:\\Users\\zala\\workspaceEE_MobisServer\\MobisServerV0.1\\res\\"+user.getUserConcept().toString() + "Ontology.k");
+			URL resource = CCServlet.class.getClassLoader().getResource("ontologies/"+user.getUserConcept().toString() + "Ontology.k");
+			String res= Paths.get(resource.toURI()).toFile().toString();
+			File file = new File(res);
 			boolean success = file.delete();
 			if (!success) {
 				LOGGER.severe("Could not delete personal ontology file.");
+				return "Could not delete personal ontology file.";
 			}
+		} catch(NullPointerException e) {
+			LOGGER.severe("Could not find personal ontology file or it doesn't exist.");
+			return "Could not find personal ontology file or it doesn't exist.";
 		} catch (Exception e) {
 			LOGGER.severe("Did not delete personal ontology file.");
+			return "Did not delete personal ontology file.";
 		}
-		
-		
+		LOGGER.info("Personal file was deleted.");
+		return "Profile was successfully deleted";
 	}
 	
 	/**
-	 * A methods that creater a feedback object from http request parameters
+	 * A method that handles calendar call - check for the missing data and returns a corresponding Discourse object
 	 * @param user
-	 * @param _sentenceId
-	 * @param _answer
+	 * @param _packet
+	 * @param method
 	 * @return
+	 * @throws ReasoningEngineAccessException
 	 */
-	private Feedback createFeedback(CCUser user, HttpServletRequest request) {
-		ArrayList<String> list = new ArrayList<String>();
-	    list.addAll(Arrays.asList((request.getParameterValues("answer"))));
-	    String answer = list.get(0);
-	    
-	    list = new ArrayList<String>();
-	    list.addAll(Arrays.asList(request.getParameterValues("sentenceId")));
-	    String sententeId = list.get(0);
-	    
-//	    String[] token = request.getParameterValues("token"); 
-	    
-		Feedback feedback = new Feedback(user.getUserConcept(), new Concept(sententeId), answer);
-		return feedback;
+	private Discourse handleCalendarMethod(CCUser user, InfoPacket _packet, ConversationMethod method) throws ReasoningEngineAccessException {		
+		String file = "ontologies/"+user.getUserConcept().toString()+"Ontology.k";
+		InputStream stream = CCServlet.class.getClassLoader().getResourceAsStream(file);
+		ConversationalComponent testF = new UmkoConversationalComponent(user, stream, _packet, method);
+		
+		Discourse test = testF.getDiscourseForConcept(user.getUserConcept());
+		
+		writeToPersonalOnt(user, test.getNewKnowledge());
+		return test;
 	}
 	
+	/**
+	 * A method that checks if the data is written to user's ontology files - first, it checks if the data can be read, second, it checks if the data can be written.
+	 * It makes sense to use a token of a user that has been active before, otherwise there is no data to be read from the file. 
+	 * @param user
+	 * @return
+	 */
+	private String handleCheckStreamMethod(CCUser user) {
+		String file = "ontologies/"+user.getUserConcept().toString()+"Ontology.k";
+		InputStream stream = CCServlet.class.getClassLoader().getResourceAsStream(file);
+		if (stream != null) {
+			try {
+				BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+				String line = br.readLine();
+				br.close();				
+				
+				String write = writeToPersonalOnt(user, line + "\n");
+				return "Can read the file. First line of the file: "+ line + ". Trying to write in file... ... " + write; 	
+			} catch (IOException e) {
+				LOGGER.severe("Could not read the file for some reason. But some data is there.");
+				e.printStackTrace();
+				String write = writeToPersonalOnt(user, "add concept "+ user.getUserConcept().toString() + "\n");
+				return "Could not read the file for some reason. But some data is there."+ ". Trying to write in file... ... " + write;
+			}
+		}
+		else {
+			String write = writeToPersonalOnt(user, "add concept "+ user.getUserConcept().toString() + "\n");
+			return "the file doesn't exist or is empty."+ ". Trying to write in file... ... " + write;
+		}
+	}
+	
+	/**
+	 * A method that returns all of the user's (corresponding to the token) existing personal ontology
+	 * @param user
+	 * @return
+	 */
+	private String handleUserDataMethod(CCUser user) {
+		String file = "ontologies/"+user.getUserConcept().toString()+"Ontology.k";
+		InputStream stream = CCServlet.class.getClassLoader().getResourceAsStream(file);
+		if (stream != null) {
+			try {
+				BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+				String line = br.readLine();
+				String lines = "";
+				while (line != null) {
+					lines += " " +line;
+					line = br.readLine();
+				}
+				br.close();		
+				return "Can read the file. Data: " + lines;
+			} catch (IOException e) {
+				LOGGER.severe("Could not read the file for some reason. But some data is there.");
+				e.printStackTrace();
+				return "Could not read the file for some reason. But some data is there.";
+			}
+		}
+		else {
+			return "The file doesn't exist or is empty.";
+		}
+	}
+	
+	/**
+	 * A method that packs the given information into a InfoPacket object
+	 * @param user
+	 * @param request
+	 * @param method
+	 * @return
+	 */
+	private InfoPacket createInfoPacket(CCUser user, HttpServletRequest request, ConversationMethod method) {
+			InfoPacket packet = new InfoPacket(user.getUserConcept());
+			ArrayList<Info> infos = new ArrayList<Info>();
+			ArrayList<String> IDs = new ArrayList<String>();
+			ArrayList<String> answers = new ArrayList<String>();
+			String eventID = "";
+			
+			try {
+				answers.addAll(Arrays.asList((request.getParameterValues("answer"))));
+			} catch (NullPointerException e) {
+				LOGGER.info("No answers were sent.");
+				try {
+					IDs.addAll(Arrays.asList(request.getParameterValues("sentenceId")));	
+					Info info = new Info(new Concept(IDs.get(0)));
+					infos.add(info);
+					} catch (NullPointerException e1) {
+						LOGGER.severe("No sentence ID was sent");
+					}
+				}
+		    try {
+		    	IDs.addAll(Arrays.asList(request.getParameterValues("sentenceId")));		    
+		    } catch(NullPointerException e) {
+				LOGGER.severe("No sentence ID was sent");
+		    }
+	//	    String[] token = request.getParameterValues("token"); 
+
+		    for (String answer : answers) {
+		    	Info info = new Info(new Concept(IDs.get(0)), answer); //loop through IDs when answers are from various questions
+				infos.add(info);
+		    }
+			switch(method) {
+			case ANSWER: case EDIT:
+				packet.setInformation(infos);
+				break;
+			case CALENDAR:
+				packet.setInformation(infos);
+				packet.setEventID(eventID);
+				break;
+			default:
+				break;
+			}
+			
+			return packet;
+	}
+	
+	/**
+	 * A methods that writes new knowledge that was obtained through conversation to user's personal ontology file
+	 * @param user
+	 * @param newKnowledge
+	 */
+	private String writeToPersonalOnt(CCUser user, String newKnowledge) {
+		try {
+			URL resource = CCServlet.class.getClassLoader().getResource("ontologies/"+user.getUserConcept().toString() + "Ontology.k");
+			String res= Paths.get(resource.toURI()).toFile().toString();
+			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res, true)));
+			writer.print(newKnowledge);
+			writer.close();
+			return "Successfully written.";
+		} catch (IOException e) {
+			LOGGER.severe("Could not write to personal ontology file. Either the ontologies folder doesn't exists or the user is new and doesn't have a file yet.");
+			return "Couldn't write to ontology folder";
+		} catch (URISyntaxException e) {
+			LOGGER.severe("Could not get URL to ontology file. Either the ontologies folder doesn't exists or the user is new and doesn't have a file yet.");
+			return "Couldn't write to ontology folder";
+		} catch	(NullPointerException e) {
+			try {
+				URL resource = CCServlet.class.getClassLoader().getResource("/ontologies/");
+				String res = Paths.get(resource.toURI()).toFile().toString();
+				PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res+"/"+user.getUserConcept().toString() + "Ontology.k", true)));
+				writer.print(newKnowledge);
+				writer.close();
+				return "Successfully written.";
+			} catch (NullPointerException e1) {
+				try {
+					LOGGER.severe("Folder doesn't exist (on that path). Check the "
+							+ "PATH-TO-WORKSPACE\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\MobisServerV0.2\\WEB-INF\\classes\\"
+							+ "and create a folder called \"ontologies\" in it.");		
+					URL resource = CCServlet.class.getClassLoader().getResource("/eu/");
+					String res = Paths.get(resource.toURI()).toFile().toString();
+					String path = res.replaceAll("eu","ontologies");
+					Boolean success = (new File(path)).mkdirs();
+					if (!success) {
+						LOGGER.severe("Folder creation failed. Try to create it manually in:" + res);
+						return "Ontologies folder doesn't exist.";
+					}
+					PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(path+"/"+user.getUserConcept().toString() + "Ontology.k", true)));
+					writer.print(newKnowledge);
+					writer.close();
+					return "Successfully written.";
+				} catch (URISyntaxException e2) {
+					return "Couldn't write to ontology folder";
+				} catch (IOException e2) {
+					return "Couldn't write to ontology folder";
+				}
+			} catch (URISyntaxException e1) {
+				LOGGER.severe("Could not get URL to ontology folder.");
+				e1.printStackTrace();
+				return "Couldn't write to ontology folder";
+			} catch (IOException e1) {
+				LOGGER.severe("Could not write to personal ontology file.");
+				return "Couldn't write to ontology folder";
+			}
+		}	
+	}
 	
 }// CCServlet
