@@ -109,7 +109,7 @@ public class GetVenuesServlet extends HttpServlet {
 						if (radiusStr == null || radiusStr.equals("")) {
 							radiusStr = "1000" ;
 						}
-						venuesList = foursquare.getFSVenues(categoriesStr, radiusStr, position, "50") ;
+						venuesList = foursquare.getFSVenues(categoriesStr, radiusStr, position, "5") ;
 					}
 					
 					if (venuesList != null && !venuesList.isEmpty()) {

@@ -1,7 +1,11 @@
 package org.uninova.mobis.apis.venues;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -20,8 +24,9 @@ public class FoursquareAPIImpl implements FoursquareAPI {
 		String foursquareVenuesSearch = "" ;
 		String clientId = "", clientSecret = "", result = "" ;
 		JSONObject obj, responseObj, thisObj, venue, location ; 
-		JSONArray groups, itemsArray, categoriesArray ;
+		JSONArray groups, itemsArray, categoriesArray, venues ;
 		HTTPUtils httpUtils = new HTTPUtilsImpl() ;
+//		ArrayList<MobisVenue> venuesList = new ArrayList<>() ;
 		ArrayList<MobisVenue> venuesList = new ArrayList<>() ;
 		ArrayList<MobisVenueCategory> categoryList = null ;
 		
@@ -29,26 +34,25 @@ public class FoursquareAPIImpl implements FoursquareAPI {
 		clientSecret = StringConstants.FOURSQUARE_CLIENT_SECRET ;
 		
 		if (categories!= null && !categories.equals("")) {
-			foursquareVenuesSearch = StringConstants.FOURSQUARE_URL + "ll=" + position + "&intent=browse&radius=" + radius + "&categoryId=" + categories + "&limit=" + limit + "&client_id=" + clientId +"&client_secret=" + clientSecret ;
+			foursquareVenuesSearch = StringConstants.FOURSQUARE_URL + "ll=" + position + "&intent=browse&radius=" + radius + "&categoryId=" + categories + "&limit=" + limit + "&client_id=" + clientId +"&client_secret=" + clientSecret + "&v=" + getTodaysDate();
 		}
 		else {
-			foursquareVenuesSearch = StringConstants.FOURSQUARE_URL + "ll=" + position + "&intent=browse&radius=" + radius + "&limit=" + limit + "&client_id=" + clientId +"&client_secret=" + clientSecret ;
+			foursquareVenuesSearch = StringConstants.FOURSQUARE_URL + "ll=" + position + "&intent=browse&radius=" + radius + "&limit=" + limit + "&client_id=" + clientId +"&client_secret=" + clientSecret + "&v=" + getTodaysDate();
 		}
 		try {
 			result = httpUtils.requestURLConnection(foursquareVenuesSearch) ;
 			if (!result.contains("error:")) {
 				obj = JSONObject.fromObject(result) ;
 				
-				responseObj = obj.getJSONObject("response") ;
-				groups = responseObj.getJSONArray("groups") ;
+				responseObj = obj.getJSONObject("response") ;					
+				groups = responseObj.getJSONArray("venues") ;
 				
-				itemsArray = JSONArray.fromObject("[]") ;
 				thisObj = groups.getJSONObject(0) ;
 				if (thisObj.containsKey("items"))
 					itemsArray = thisObj.getJSONArray("items") ;
-				if (!itemsArray.isEmpty()) {
-					for (int j = 0; j < itemsArray.size(); j++) {
-						venue = itemsArray.getJSONObject(j) ;
+				if (!groups.isEmpty()) {
+					for (int j = 0; j < groups.size(); j++) {
+						venue = groups.getJSONObject(j) ;
 						location = venue.getJSONObject("location") ;
 						if (location.getInt("distance") < Integer.parseInt(radius)) {
 							MobisVenue v = new MobisVenue() ;
@@ -155,4 +159,10 @@ public class FoursquareAPIImpl implements FoursquareAPI {
 		return null ;
 
 	}
+	
+    private static String getTodaysDate() {
+		DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
+		Date date = new Date();
+		return dateFormat.format(date);
+    }
 }
