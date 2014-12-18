@@ -47,40 +47,45 @@ public class FoursquareAPIImpl implements FoursquareAPI {
 				responseObj = obj.getJSONObject("response") ;					
 				groups = responseObj.getJSONArray("venues") ;
 				
-				thisObj = groups.getJSONObject(0) ;
-				if (thisObj.containsKey("items"))
-					itemsArray = thisObj.getJSONArray("items") ;
-				if (!groups.isEmpty()) {
-					for (int j = 0; j < groups.size(); j++) {
-						venue = groups.getJSONObject(j) ;
-						location = venue.getJSONObject("location") ;
-						if (location.getInt("distance") < Integer.parseInt(radius)) {
-							MobisVenue v = new MobisVenue() ;
-							v.setProviderId(venue.getString("id")) ;
-							v.setName(venue.getString("name")) ;
-							String address = (location.has("address") ? (location.getString("address") + ", ") : "") + (location.has("city") ? (location.getString("city") + ", ") : "") + location.getString("country") ;
-							v.setAddress(address) ;
-							v.setLat(location.getString("lat")) ;
-							v.setLng(location.getString("lng")) ;
-							
-							categoriesArray = venue.getJSONArray("categories") ;
-							
-							categoryList = new ArrayList<>() ;
-							
-							for (int i = 0; i < categoriesArray.size(); i++) {
-								JSONObject categoryObj = categoriesArray.getJSONObject(i) ;
-								MobisVenueCategory cat = new MobisVenueCategory() ;
-								cat.setId(categoryObj.getString("id")) ;
-								cat.setName(categoryObj.getString("name")) ;
-								cat.setIcon(categoryObj.getString("icon")) ;
-								categoryList.add(cat) ;
+				try {
+					thisObj = groups.getJSONObject(0) ;
+				
+					if (thisObj.containsKey("items"))
+						itemsArray = thisObj.getJSONArray("items") ;
+					if (!groups.isEmpty()) {
+						for (int j = 0; j < groups.size(); j++) {
+							venue = groups.getJSONObject(j) ;
+							location = venue.getJSONObject("location") ;
+							if (location.getInt("distance") < Integer.parseInt(radius)) {
+								MobisVenue v = new MobisVenue() ;
+								v.setProviderId(venue.getString("id")) ;
+								v.setName(venue.getString("name")) ;
+								String address = (location.has("address") ? (location.getString("address") + ", ") : "") + (location.has("city") ? (location.getString("city") + ", ") : "") + location.getString("country") ;
+								v.setAddress(address) ;
+								v.setLat(location.getString("lat")) ;
+								v.setLng(location.getString("lng")) ;
+								
+								categoriesArray = venue.getJSONArray("categories") ;
+								
+								categoryList = new ArrayList<>() ;
+								
+								for (int i = 0; i < categoriesArray.size(); i++) {
+									JSONObject categoryObj = categoriesArray.getJSONObject(i) ;
+									MobisVenueCategory cat = new MobisVenueCategory() ;
+									cat.setId(categoryObj.getString("id")) ;
+									cat.setName(categoryObj.getString("name")) ;
+									cat.setIcon(categoryObj.getString("icon")) ;
+									categoryList.add(cat) ;
+								}
+								v.setCategories(categoryList) ;
+								
+								venuesList.add(v) ;
 							}
-							v.setCategories(categoryList) ;
-							
-							venuesList.add(v) ;
 						}
+						return venuesList ;
 					}
-					return venuesList ;
+				} catch (IndexOutOfBoundsException e) {
+					//do nothing
 				}
 			}
 		} catch (IOException e) {

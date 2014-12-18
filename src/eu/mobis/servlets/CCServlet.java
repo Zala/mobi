@@ -16,7 +16,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +46,8 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 
 
 
+
+
 import cc.component.ConversationalComponent;
 import cc.component.UmkoConversationalComponent;
 import cc.component.UmkoConversationalComponent.ConversationMethod;
@@ -58,6 +59,7 @@ import cc.component.types.Info;
 import cc.component.types.InfoPacket;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import eu.mobis.servlets.exceptions.MobisServletException;
@@ -72,7 +74,7 @@ public class CCServlet extends HttpServlet {
 	MobisMainDBConnector mainDB = new MobisMainDBConnectorImpl();// TODO: Join the DB Utils and
 																						// MainDB
 	DBUtils dbUtils = new DBUtilsImpl();
-	Gson gson = new Gson();
+	Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
 	public enum CCMethod {
 		PROFILE("PROFILE"), ANSWER ("ANSWER"), EDIT("EDIT"), DELETE("DELETE"), CALENDAR("CALENDAR"), CHECK_STREAM("CHECK_STREAM"), USER_DATA("USER_DATA"),
@@ -207,12 +209,13 @@ public class CCServlet extends HttpServlet {
 				break;
 			case SUGGESTIONS:
 				responseType = new TypeToken<MobisResponse<Discourse>>(){}.getType();
-				InfoPacket venues = createInfoPacket(user, request, ConversationMethod.SUGGESTIONS);
-//				InfoPacket venues = new InfoPacket(user.getUserConcept()); 
-//				venues.setOnRoute(false);
+//				InfoPacket venues = createInfoPacket(user, request, ConversationMethod.SUGGESTIONS);
+				InfoPacket venues = new InfoPacket(user.getUserConcept()); 
+				venues.setOnRoute(true);
+				venues.setRouteJSON(getRouteJSON());
 //				venues.setPosition("46.042285,14.487323");
-//				String token = request.getParameter("token");
-//				venues.setUserToken(token);
+				String token = request.getParameter("token");
+				venues.setUserToken(token);
 				MobisResponse<Discourse> CC = new MobisResponse<Discourse>();				
 				CC.setResponseObject(handleSuggestionsMethod(user, venues, ConversationMethod.SUGGESTIONS));
 				resp = CC;
@@ -458,6 +461,7 @@ public class CCServlet extends HttpServlet {
 			ArrayList<Info> infos = new ArrayList<Info>();
 			ArrayList<String> IDs = new ArrayList<String>();
 			ArrayList<String> answers = new ArrayList<String>();
+			ArrayList<String> list = new ArrayList<String>();
 			Boolean onRoute;
 			
 			try {
@@ -492,11 +496,11 @@ public class CCServlet extends HttpServlet {
 				packet.setEventID(request.getParameterValues("eventID").toString());
 				break;
 			case SUGGESTIONS:
-				onRoute = Boolean.valueOf(request.getParameterValues("onRoute").toString());
+		        list.addAll(Arrays.asList(request.getParameterValues("onRoute")));
+				onRoute = Boolean.valueOf(list.get(0));
 				if (onRoute) {
 					packet.setOnRoute(onRoute);
-					
-					ArrayList<String> list = new ArrayList<String>();
+					list = new ArrayList<String>();
 			        list.addAll(Arrays.asList(request.getParameterValues("routeJSON")));
 					packet.setRouteJSON(list.get(0));
 					
@@ -506,7 +510,7 @@ public class CCServlet extends HttpServlet {
 				} else {
 					packet.setOnRoute(onRoute);
 					
-					ArrayList<String> list = new ArrayList<String>();
+					list = new ArrayList<String>();
 			        list.addAll(Arrays.asList(request.getParameterValues("position")));
 					packet.setPosition(list.get(0));
 					
@@ -519,7 +523,7 @@ public class CCServlet extends HttpServlet {
 				} catch (NullPointerException e) {
 					LOGGER.log(Level.INFO, "No info is sent");
 				} try{
-					ArrayList<String> list = new ArrayList<String>();
+					list = new ArrayList<String>();
 			        list.addAll(Arrays.asList(request.getParameterValues("eventID")));
 					packet.setEventID(list.get(0));
 					
@@ -657,4 +661,23 @@ public class CCServlet extends HttpServlet {
 		}	
 	}
 	
+	private String getRouteJSON() {
+		InputStream is = CCServlet.class.getClassLoader().getResourceAsStream(".//ExampleRouteJSON.txt");
+		BufferedReader br = new BufferedReader(new InputStreamReader(is));
+		String JSON="";
+		try {
+			String line = br.readLine();
+			while (line != null) {
+				JSON += line;
+				line=br.readLine();
+			}
+		br.close();
+		return JSON;
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return JSON; 
+	}	
 }// CCServlet

@@ -93,7 +93,11 @@ public class GetVenuesServlet extends HttpServlet {
 								seg = route.getSegments().get(i) ;
 								for (int j = 0; j < seg.getNodes().size(); j++) {
 									node = seg.getNodes().get(j) ;
-									venuesList.addAll(foursquare.getFSVenues(categoriesStr, "100", (node.getLat() + "," + node.getLng()), "10")) ;
+									try {
+										venuesList.addAll(foursquare.getFSVenues(categoriesStr, "100", (node.getLat() + "," + node.getLng()), "10")) ;
+									} catch (NullPointerException e) {
+										//do nothing
+									}
 								}
 							}
 						}
