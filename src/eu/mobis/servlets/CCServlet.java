@@ -14,9 +14,12 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,6 +40,9 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 //import cc.component.exceptions.ReasoningEngineAccessException;
 //import cc.component.types.CCUser;
 //import cc.component.types.Discourse;
+
+
+
 
 
 
@@ -209,10 +215,16 @@ public class CCServlet extends HttpServlet {
 				break;
 			case SUGGESTIONS:
 				responseType = new TypeToken<MobisResponse<Discourse>>(){}.getType();
-//				InfoPacket venues = createInfoPacket(user, request, ConversationMethod.SUGGESTIONS);
-				InfoPacket venues = new InfoPacket(user.getUserConcept()); 
-				venues.setOnRoute(true);
-				venues.setRouteJSON(getRouteJSON());
+				InfoPacket venues = createInfoPacket(user, request, ConversationMethod.SUGGESTIONS);
+//				InfoPacket venues = new InfoPacket(user.getUserConcept()); 
+//				venues.setOnRoute(true);
+//				venues.setRouteJSON(getRouteJSON());
+//				Info i = new Info(new Concept("DetailsSentence"), "ShowMeRoute");
+//				ArrayList<Info> l = new ArrayList<Info>();
+//				l.add(i);
+//				venues.setInformation(l);
+//				venues.setConvTopic(new Concept("ClothingStore"));
+//				venues.setEventID("Indiska");
 //				venues.setPosition("46.042285,14.487323");
 				String token = request.getParameter("token");
 				venues.setUserToken(token);
@@ -439,8 +451,9 @@ public class CCServlet extends HttpServlet {
 		String file = "ontologies/"+user.getUserConcept().toString()+"Ontology.k";
 		InputStream personalOnt = CCServlet.class.getClassLoader().getResourceAsStream(file);
 		file = "ontologies/"+user.getUserConcept().toString()+"Temp.k";
-		InputStream temp = CCServlet.class.getClassLoader().getResourceAsStream(file);
-		ConversationalComponent dis = new UmkoConversationalComponent(user, personalOnt, temp, info, method);
+//		cleanTemp(user); //TODO find problem in that method that creates memory leak
+		InputStream newTemp = CCServlet.class.getClassLoader().getResourceAsStream(file);
+		ConversationalComponent dis = new UmkoConversationalComponent(user, personalOnt, newTemp, info, method);
 		//when to make that method? Scenic route, long journey?
 		
 		Discourse d = dis.getDiscourseForConcept(user.getUserConcept());
@@ -502,7 +515,11 @@ public class CCServlet extends HttpServlet {
 					packet.setOnRoute(onRoute);
 					list = new ArrayList<String>();
 			        list.addAll(Arrays.asList(request.getParameterValues("routeJSON")));
-					packet.setRouteJSON(list.get(0));
+					if (!list.get(0).equals("null")) {
+						packet.setRouteJSON(list.get(0));
+					} else {
+						packet.setRouteJSON(getRouteJSON());
+					}
 					
 					list = new ArrayList<String>();			
 			        list.addAll(Arrays.asList(request.getParameterValues("token")));	
@@ -661,6 +678,43 @@ public class CCServlet extends HttpServlet {
 		}	
 	}
 	
+	private void cleanTemp(CCUser user) {
+		URL resource = CCServlet.class.getResource("/ontologies/"+user.getUserConcept().toString() + "Temp.k");
+		
+        SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+		Calendar c1 = Calendar.getInstance();
+		c1.add(Calendar.DAY_OF_YEAR, 0);
+		String today = sdf.format(c1.getTime());
+		c1.add(Calendar.DAY_OF_YEAR, -1);
+		String yesterday = sdf.format(c1.getTime());
+		String newTemp="";
+		try{
+			BufferedReader br = new BufferedReader(new InputStreamReader(resource.openStream()));
+			String line = br.readLine();
+			while (line != null) {
+				if (line.contains(today) | line.contains(yesterday)){
+					newTemp += line+"\n";
+				}
+				line=br.readLine();
+			}
+			br.close();		//automatically closes input stream
+		
+//			PrintWriter makes: registered the JDBC driver [org.postgresql.Driver] but failed to unregister it when the web application was stopped. To prevent a memory leak, the JDBC Driver has been forcibly unregistered.
+			String res= Paths.get(resource.toURI()).toFile().toString();
+			PrintWriter writer = new PrintWriter(new BufferedWriter(new FileWriter(res, false)));
+			writer.print(newTemp);
+			writer.flush();
+			writer.close();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+			System.out.println("Couldn't get the file");
+		}
+	}
+	
 	private String getRouteJSON() {
 		InputStream is = CCServlet.class.getClassLoader().getResourceAsStream(".//ExampleRouteJSON.txt");
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
@@ -680,4 +734,5 @@ public class CCServlet extends HttpServlet {
 		}
 		return JSON; 
 	}	
+	
 }// CCServlet
