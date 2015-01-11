@@ -14,10 +14,13 @@ import java.net.URL;
 import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -54,6 +57,10 @@ import org.uninova.mobis.utils.DBUtilsImpl;
 
 
 
+
+
+
+
 import cc.component.ConversationalComponent;
 import cc.component.UmkoConversationalComponent;
 import cc.component.UmkoConversationalComponent.ConversationMethod;
@@ -61,6 +68,7 @@ import cc.component.exceptions.ReasoningEngineAccessException;
 import cc.component.types.CCUser;
 import cc.component.types.Concept;
 import cc.component.types.Discourse;
+import cc.component.types.GoogleCalendarRecord;
 import cc.component.types.Info;
 import cc.component.types.InfoPacket;
 
@@ -191,14 +199,14 @@ public class CCServlet extends HttpServlet {
 				resp = delete;
 				break;
 			case CALENDAR:
-				responseType = new TypeToken<MobisResponse<Discourse>>(){
-				}.getType();
-				Info info = new Info(new Concept("CalendarEventLocationQuestion"), "JSI");
-				ArrayList<Info> list = new ArrayList<Info>();
-				list.add(info);
-				InfoPacket packet = new InfoPacket(user.getUserConcept(), list, "department meeting");
+				responseType = new TypeToken<MobisResponse<Discourse>>(){}.getType();
+				InfoPacket calendar = createInfoPacket(user, request, ConversationMethod.CALENDAR);
+//				Info info = new Info(new Concept("CalendarEventLocationQuestion"), "JSI");
+//				ArrayList<Info> list = new ArrayList<Info>();
+//				list.add(info);
+//				InfoPacket calendar = new InfoPacket(user.getUserConcept(), list, "department meeting");
 				MobisResponse<Discourse> c = new MobisResponse<Discourse>();
-				c.setResponseObject(handleCalendarMethod(user, packet, ConversationMethod.CALENDAR));
+				c.setResponseObject(handleCalendarMethod(user, calendar, ConversationMethod.CALENDAR));
 				resp = c;
 				break;
 			case CHECK_STREAM:
@@ -218,7 +226,6 @@ public class CCServlet extends HttpServlet {
 				InfoPacket venues = createInfoPacket(user, request, ConversationMethod.SUGGESTIONS);
 //				InfoPacket venues = new InfoPacket(user.getUserConcept()); 
 //				venues.setOnRoute(true);
-//				venues.setRouteJSON(getRouteJSON());
 //				Info i = new Info(new Concept("DetailsSentence"), "ShowMeRoute");
 //				ArrayList<Info> l = new ArrayList<Info>();
 //				l.add(i);
@@ -477,7 +484,14 @@ public class CCServlet extends HttpServlet {
 			ArrayList<String> list = new ArrayList<String>();
 			Boolean onRoute;
 			
-			try {
+			try {	
+		        list.addAll(Arrays.asList(request.getParameterValues("token")));	
+				packet.setUserToken(list.get(0));
+			} catch (NullPointerException ex) {
+				LOGGER.log(Level.SEVERE, "Token wasn't sent!"); 
+				return null;
+			} 
+			try {	
 				answers.addAll(Arrays.asList((request.getParameterValues("answer"))));
 			} catch (NullPointerException e) {
 				LOGGER.info("No answers were sent.");
@@ -499,16 +513,96 @@ public class CCServlet extends HttpServlet {
 		    for (String answer : answers) {
 		    	Info info = new Info(new Concept(IDs.get(0)), answer); //loop through IDs when answers are from various questions
 				infos.add(info);
+				packet.setInformation(infos);
 		    }
 			switch(method) {
 			case ANSWER: case EDIT: 
-				packet.setInformation(infos);
 				break;
 			case CALENDAR:
-				packet.setInformation(infos);
-				packet.setEventID(request.getParameterValues("eventID").toString());
+//		        list.addAll(Arrays.asList(request.getParameterValues("eventID")));
+//		        if (list.size()!=0) {
+//		        	packet.setEventID(list.get(0));
+//		        }
+		         
+		        try {
+			        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					list = new ArrayList<String>();
+			        GoogleCalendarRecord appointment = new GoogleCalendarRecord();
+			        list.addAll(Arrays.asList(request.getParameterValues("id1")));
+			        appointment.setId(Integer.valueOf(list.get(0)));
+			        
+			        GoogleCalendarRecord prAppointment = new GoogleCalendarRecord();
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("id2")));
+			        prAppointment.setId(Integer.valueOf(list.get(0)));
+			        
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("title1")));
+			        appointment.setTitle(list.get(0));;
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("dateStart1")));
+			        appointment.setDateStart(format.parse(list.get(0)));
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("dateEnd1")));
+			        appointment.setDateEnd(format.parse(list.get(0)));
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("location1")));
+			        appointment.setLocation(list.get(0));			        
+			        packet.setAppointment(appointment);	     
+			        
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("title2")));
+			        prAppointment.setTitle(list.get(0));
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("dateStart2")));
+			        prAppointment.setDateStart(format.parse(list.get(0)));
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("dateEnd2")));
+			        prAppointment.setDateEnd(format.parse(list.get(0)));
+	
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("location2")));
+			        prAppointment.setLocation(list.get(0));        
+			        packet.setPreviousAppointment(prAppointment);
+		        } catch (ParseException ex) {
+		        	LOGGER.log(Level.SEVERE, "Could not parse date! Appointments are missing information");
+		        	ex.printStackTrace();
+		        } catch (NullPointerException ex) {
+		        	LOGGER.log(Level.INFO, "Did not receive one or more event information values.");	
+		        	GoogleCalendarRecord appointment = new GoogleCalendarRecord();
+			        list.addAll(Arrays.asList(request.getParameterValues("id1")));
+			        appointment.setId(Integer.valueOf(list.get(0)));
+			        
+			        GoogleCalendarRecord prAppointment = new GoogleCalendarRecord();
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("id2")));			        
+			        prAppointment.setId(Integer.valueOf(list.get(0)));
+			        
+			        packet.setAppointment(appointment);	     
+			        packet.setPreviousAppointment(prAppointment);
+		        	LOGGER.log(Level.INFO, "IDs od two events were received. ");	
+		        }
+		        try {
+		        	list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("routeJSON")));
+					if (!list.get(0).equals("null")) {
+						packet.setRouteJSON(list.get(0));
+					} else {
+						packet.setRouteJSON(getRouteJSON());
+					}
+		        } catch (NullPointerException ex) {
+		        	LOGGER.log(Level.INFO, "Did not receive routeJSON value.");
+		        }
+		        
 				break;
 			case SUGGESTIONS:
+				list = new ArrayList<String>();	
 		        list.addAll(Arrays.asList(request.getParameterValues("onRoute")));
 				onRoute = Boolean.valueOf(list.get(0));
 				if (onRoute) {
@@ -520,10 +614,10 @@ public class CCServlet extends HttpServlet {
 					} else {
 						packet.setRouteJSON(getRouteJSON());
 					}
-					
-					list = new ArrayList<String>();			
-			        list.addAll(Arrays.asList(request.getParameterValues("token")));	
-					packet.setUserToken(list.get(0));								
+					list = new ArrayList<String>();
+			        list.addAll(Arrays.asList(request.getParameterValues("routePreference")));
+			        packet.setRoutePreference(list.get(0));
+			        
 				} else {
 					packet.setOnRoute(onRoute);
 					
@@ -531,9 +625,6 @@ public class CCServlet extends HttpServlet {
 			        list.addAll(Arrays.asList(request.getParameterValues("position")));
 					packet.setPosition(list.get(0));
 					
-					list = new ArrayList<String>();			
-			        list.addAll(Arrays.asList(request.getParameterValues("token")));	
-					packet.setUserToken(list.get(0));	
 				}
 				try {
 					packet.setInformation(infos); //if there are any
@@ -541,6 +632,7 @@ public class CCServlet extends HttpServlet {
 					LOGGER.log(Level.INFO, "No info is sent");
 				} try{
 					list = new ArrayList<String>();
+//					String encoding = request.getCharacterEncoding();
 			        list.addAll(Arrays.asList(request.getParameterValues("eventID")));
 					packet.setEventID(list.get(0));
 					
@@ -550,7 +642,7 @@ public class CCServlet extends HttpServlet {
 					
 				} catch (NullPointerException e) {
 					LOGGER.log(Level.INFO, "No eventId or topic is sent");
-				}
+				} 
 			default:
 				break;
 			}
@@ -716,7 +808,7 @@ public class CCServlet extends HttpServlet {
 	}
 	
 	private String getRouteJSON() {
-		InputStream is = CCServlet.class.getClassLoader().getResourceAsStream(".//ExampleRouteJSON.txt");
+		InputStream is = CCServlet.class.getClassLoader().getResourceAsStream(".//ExampleRouteJSONshort.txt");
 		BufferedReader br = new BufferedReader(new InputStreamReader(is));
 		String JSON="";
 		try {
@@ -726,6 +818,7 @@ public class CCServlet extends HttpServlet {
 				line=br.readLine();
 			}
 		br.close();
+		LOGGER.log(Level.INFO, "Test route was loaded.");
 		return JSON;
 		} catch (IOException e) {
 			e.printStackTrace();

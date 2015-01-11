@@ -2,6 +2,7 @@ package org.uninova.mobis.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Type;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -11,7 +12,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
+import org.apache.commons.io.IOUtils;
 import org.uninova.mobis.apis.venues.FoursquareAPI;
 import org.uninova.mobis.apis.venues.FoursquareAPIImpl;
 import org.uninova.mobis.constants.NumericConstants;
@@ -61,11 +65,14 @@ public class GetVenuesServlet extends HttpServlet {
 		Gson gson = new Gson() ;
 		DBUtils dbUtils = new DBUtilsImpl() ;
 		Connection con ;
+		HttpSession session = request.getSession() ;
 		MobisMainDBConnector mobisMain = new MobisMainDBConnectorImpl() ;
+		Type type = new TypeToken<MobisRoute>(){}.getType() ;
 		Type responseType = new TypeToken<MobisResponse<ArrayList<MobisVenue>>>(){}.getType();
 		boolean onRoute = Boolean.parseBoolean(request.getParameter("onRoute")) ;
 		String categoriesStr = request.getParameter("categories") ;
 		String token = request.getParameter("token") ;
+		boolean inSession = Boolean.parseBoolean(request.getParameter("inSession")) ;
 		String position ;
 		String radiusStr ;
 		String jsonRoute ;
@@ -86,18 +93,22 @@ public class GetVenuesServlet extends HttpServlet {
 				userId = mobisMain.getUserIdFromToken(dbUtils, con, token) ;
 				if (userId != null && userId >= 0) {
 					if (onRoute) {
-						jsonRoute = request.getParameter("jsonRoute") ;
-						route = gson.fromJson(jsonRoute, MobisRoute.class) ;
+						if (inSession) {
+							route = gson.fromJson((String) session.getAttribute("theRoute"), type) ;
+						}
+						else {
+							Part part = request.getPart("theRoute") ;
+							StringWriter writer = new StringWriter();
+							IOUtils.copy(part.getInputStream(), writer, "UTF-8");
+							route = gson.fromJson((String)  writer.toString(), type) ;
+						}
 						if (route != null) {
 							for (int i = 0; i < route.getSegments().size(); i++) {
 								seg = route.getSegments().get(i) ;
 								for (int j = 0; j < seg.getNodes().size(); j++) {
 									node = seg.getNodes().get(j) ;
-									try {
+									if (foursquare.getFSVenues(categoriesStr, "100", (node.getLat() + "," + node.getLng()), "10")!=null)
 										venuesList.addAll(foursquare.getFSVenues(categoriesStr, "100", (node.getLat() + "," + node.getLng()), "10")) ;
-									} catch (NullPointerException e) {
-										//do nothing
-									}
 								}
 							}
 						}
@@ -113,11 +124,12 @@ public class GetVenuesServlet extends HttpServlet {
 						if (radiusStr == null || radiusStr.equals("")) {
 							radiusStr = "1000" ;
 						}
-						venuesList = foursquare.getFSVenues(categoriesStr, radiusStr, position, "5") ;
+						venuesList = foursquare.getFSVenues(categoriesStr, radiusStr, position, "50") ;
 					}
 					
 					if (venuesList != null && !venuesList.isEmpty()) {
 						resp.setResponseObject(venuesList) ;
+						resp.setErrorCode(200);
 						out.println(gson.toJson(resp, responseType)) ;
 					}
 					else {
@@ -140,7 +152,7 @@ public class GetVenuesServlet extends HttpServlet {
 			}
 			out.close() ;
 			return ;
-		} catch (IOException | SQLException e) {
+		} catch (IOException | SQLException | IllegalStateException | ServletException e) {
 			e.printStackTrace();
 		}
 	}
