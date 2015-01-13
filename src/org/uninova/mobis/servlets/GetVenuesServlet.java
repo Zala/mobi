@@ -105,10 +105,19 @@ public class GetVenuesServlet extends HttpServlet {
 						if (route != null) {
 							for (int i = 0; i < route.getSegments().size(); i++) {
 								seg = route.getSegments().get(i) ;
-								for (int j = 0; j < seg.getNodes().size(); j++) {
-									node = seg.getNodes().get(j) ;
-									if (foursquare.getFSVenues(categoriesStr, "100", (node.getLat() + "," + node.getLng()), "10")!=null)
-										venuesList.addAll(foursquare.getFSVenues(categoriesStr, "100", (node.getLat() + "," + node.getLng()), "10")) ;
+								if (seg.getNodes().size() <= 15) {
+									for (int j = 0; j < seg.getNodes().size(); j++) {
+										node = seg.getNodes().get(j) ;
+										if (foursquare.getFSVenues(categoriesStr, "1000", (node.getLat() + "," + node.getLng()), "10")!=null)
+											venuesList.addAll(foursquare.getFSVenues(categoriesStr, "1000", (node.getLat() + "," + node.getLng()), "10")) ;
+									}
+								} 
+								else {
+									for (int j = 0; j < seg.getNodes().size()/15; j++) {
+										node = seg.getNodes().get(j*15) ;
+										if (foursquare.getFSVenues(categoriesStr, "1000", (node.getLat() + "," + node.getLng()), "10")!=null)
+											venuesList.addAll(foursquare.getFSVenues(categoriesStr, "1000", (node.getLat() + "," + node.getLng()), "10")) ;
+									}
 								}
 							}
 						}
